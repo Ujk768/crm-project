@@ -1,0 +1,31 @@
+$breakpoints: (
+	"mobile-min": (min-width: 320px),
+	"mobile-max": (max-width: 767px),
+	"desktop-max": (max-width: 1199px),
+	"desktop-min": (min-width: 1025px),
+);
+
+@mixin breakpoint($name) {
+	@if map-has-key($breakpoints, $name) {
+		@media screen and #{inspect(map-get($breakpoints, $name))} {
+			@content;
+		}
+	}
+
+	@else {
+		@warn "Couldn't find a breakpoint named `#{$name}`.";
+	}
+}
+
+@mixin container($name) {
+	@if map-has-key($breakpoints, $name) {
+		@container (#{inspect(map-get($breakpoints, $name))}) {
+			@content;
+		}
+	}
+	@else {
+		@container (#{$name}) {
+			@content;
+		}
+	}
+}

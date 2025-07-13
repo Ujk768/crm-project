@@ -1,13 +1,12 @@
-
-import './App.css'
+import "./App.css";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
-
   return (
     <>
-    This is react app
+      <Dashboard />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
