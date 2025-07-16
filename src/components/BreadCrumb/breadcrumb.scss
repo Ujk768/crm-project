@@ -1,0 +1,21 @@
+@import "../../scss/breakpoints";
+
+.breadcrumb {
+  height: 50px;
+  background-color: #F8F9FA;
+  padding: 10px;
+  &__title {
+    color: #1f5fac;
+  }
+
+  &__id {
+    border: 1px solid #e9ecef;
+    border-radius: 2px;
+    height: 40%;
+    padding: 2px;
+  }
+
+  @include breakpoint("mobile-max") {
+    font-size: 10px;
+  }
+}

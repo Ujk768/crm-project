@@ -1,5 +1,14 @@
+@import "../../../scss/breakpoints";
+
 .profile {
-    .icons {
-       gap: 5px;
-    }
+  .icons {
+    gap: 5px;
+  }
+  .user {
+    margin: 0 5px;
+  }
+
+  .fs-10 {
+    font-size: 10px;
+  }
 }

@@ -1,8 +1,25 @@
-.icon-btn{
-    &__full{
-        border-radius: 50%;
-        border: 1px solid gray;
-        width: 40px;
-        height: 40px;
-    }
+@import "../../scss/breakpoints";
+
+.icon-btn {
+  cursor: pointer;
+  &__full {
+    border-radius: 50%;
+    border: 1px solid gray;
+    width: 40px;
+    height: 40px;
+  }
+  &__text {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    color: #343a40;
+    padding: 4px;
+  }
+  &__norm{
+    height: 100%;
+    width: 100%;
+  }
+
+  @include breakpoint("mobile-max") {
+    font-size: 10px;
+  }
 }

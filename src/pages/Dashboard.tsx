@@ -1,12 +1,25 @@
 import React from "react";
 import SideBar from "../components/SideBar.tsx/SideBar";
 import Header from "../components/Header/Header";
-// import "./dashboard.scss";
+import BreadCrumb from "../components/BreadCrumb/BreadCrumb";
+import "./dashboard.scss";
+import CustDetails from "../components/CustDetails/CustDetails";
 export default function Dashboard() {
   return (
-    <div className="dashbaord flex">
-      <SideBar />
-      <Header/> 
+    <div className="dashboard flex">
+      <div className="sidebar">
+        <SideBar />
+      </div>
+      <div className="main">
+        <Header />
+        <div className="container">
+          <div className="main__first">
+            <BreadCrumb />
+            <CustDetails/>
+          </div>
+          <div className="main__sec">second sec</div>
+        </div>
+      </div>
     </div>
   );
 }
