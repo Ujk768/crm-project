@@ -1,0 +1,39 @@
+@import "../../scss/breakpoints";
+.cust-details {
+  padding: 8px;
+  // background-color: red;
+  &__profile {
+    width: 64px;
+    height: 64px;
+  }
+  &__btn:nth-child(1) {
+    .icon-btn__text {
+      border: 2px solid #f6c1c1;
+      border-radius: 2px;
+      background-color: #fceaea;
+      color: #e03131;
+    }
+  }
+  &__btn:not(:first-of-type) {
+    border: 2px solid #ced4da;
+    border-radius: 2px;
+    color: #656e7a;
+    height: 32px;
+    width: 32px;
+  }
+  &__strip {
+    height: 50px;
+    .text {
+      color: #1f5fac;
+    }
+  }
+  &__info {
+    color: #495057;
+    .first-sec {
+      width: 50%;
+      .title {
+        width: 55%;
+      }
+    }
+  }
+}
