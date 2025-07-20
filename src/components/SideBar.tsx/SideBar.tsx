@@ -1,5 +1,4 @@
 import React from "react";
-import { isMobile } from "../../util/utils";
 import "./sidebar.scss";
 import IconButtons from "../IconButtons/IconButtons";
 export default function SideBar() {

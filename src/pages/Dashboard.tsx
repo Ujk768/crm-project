@@ -4,6 +4,7 @@ import Header from "../components/Header/Header";
 import BreadCrumb from "../components/BreadCrumb/BreadCrumb";
 import "./dashboard.scss";
 import CustDetails from "../components/CustDetails/CustDetails";
+import JobDetails from "../components/JobDetails/JobDetails";
 export default function Dashboard() {
   return (
     <div className="dashboard flex">
@@ -15,7 +16,8 @@ export default function Dashboard() {
         <div className="container">
           <div className="main__first">
             <BreadCrumb />
-            <CustDetails/>
+            <CustDetails />
+            <JobDetails />
           </div>
           <div className="main__sec">second sec</div>
         </div>

@@ -1,16 +1,21 @@
 import React from "react";
 import "./cust-details.scss";
 import IconButtons from "../IconButtons/IconButtons";
+import { isMobile } from "../../util/utils";
 export default function CustDetails() {
   return (
-    <div className="cust-details">
-      <div className=" flex align-center justify-space-btw ">
+    <div className="cust-details fs-12">
+      <div
+        className={`${
+          isMobile ? "flex flex-col" : "flex align-center justify-space-btw"
+        }`}
+      >
         <div className="flex align-center">
           <div className="cust-details__profile">
             <img src="" alt="profile-logo" />
           </div>
           <div>
-            <p>William Sample</p>
+            <p className="fw-600">William Sample</p>
             <div className="flex gp-5">
               <p>Senior Product Manager</p>
               <p>United States</p>
@@ -49,7 +54,13 @@ export default function CustDetails() {
           </div>
         </div>
       </div>
-      <div className="cust-details__strip flex justify-space-btw  align-center">
+      <div
+        className={
+          isMobile
+            ? "cust-details__strip flex flex-col mt-10"
+            : "cust-details__strip flex justify-space-btw  align-center"
+        }
+      >
         <div className="flex align-center gp-5">
           <div className="flex align-center">
             <IconButtons
@@ -59,7 +70,11 @@ export default function CustDetails() {
             />
             <p className="text fw-600">williamsample@gmail.com</p>
           </div>
-          <div className="flex align-center">
+          <div
+            className={
+              isMobile ? "flex align-center ml-10" : "flex align-center"
+            }
+          >
             <IconButtons
               btnType="icon"
               fullRounded={false}
@@ -77,7 +92,11 @@ export default function CustDetails() {
             />
             <p className="fw-600">Philis Yang</p>
           </div>
-          <div className="flex align-center">
+          <div
+            className={
+              isMobile ? "flex align-center ml-10" : "flex align-center"
+            }
+          >
             <IconButtons
               btnType="icon"
               fullRounded={false}

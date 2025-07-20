@@ -13,6 +13,7 @@
       background-color: #fceaea;
       color: #e03131;
     }
+    height: 32px;
   }
   &__btn:not(:first-of-type) {
     border: 2px solid #ced4da;
@@ -25,6 +26,9 @@
     height: 50px;
     .text {
       color: #1f5fac;
+    }
+    .bx {
+      font-size: 15px;
     }
   }
   &__info {
