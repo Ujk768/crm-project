@@ -53,7 +53,7 @@ export default function JobDetails() {
           ))}
         </div>
       ) : (
-        <div>No data available</div>
+        <div className="job-section">No data available</div>
       )}
     </div>
   );

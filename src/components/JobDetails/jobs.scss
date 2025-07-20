@@ -27,7 +27,7 @@
   }
 
   .job-section {
-    min-height: 200px;
+    min-height: 150px;
     @include breakpoint("mobile-max") {
       min-height: 110px;
     }

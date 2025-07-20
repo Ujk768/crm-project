@@ -2,7 +2,9 @@ import React from "react";
 import "./cust-details.scss";
 import IconButtons from "../IconButtons/IconButtons";
 import { isMobile } from "../../util/utils";
+import { useCustDetails } from "./useCustDetails";
 export default function CustDetails() {
+  const { handleEditBtn, custDetailsApiRes } = useCustDetails();
   return (
     <div className="cust-details fs-12">
       <div
@@ -42,13 +44,14 @@ export default function CustDetails() {
             <IconButtons
               btnType="icon"
               fullRounded={false}
-              icon={<i className="bxr  bx-campfire"></i>}
+              icon={<i className="bx bx-star"></i>}
             />
           </div>
           <div className="cust-details__btn flex justify-center align-center">
             <IconButtons
               btnType="icon"
               fullRounded={false}
+              handleOnClick={handleEditBtn}
               icon={<i className="bx  bx-edit"></i>}
             />
           </div>
@@ -68,7 +71,7 @@ export default function CustDetails() {
               fullRounded={false}
               icon={<i className="bx bx-envelope bx-fw"></i>}
             />
-            <p className="text fw-600">williamsample@gmail.com</p>
+            <p className="text fw-600">{custDetailsApiRes?.email}</p>
           </div>
           <div
             className={
@@ -82,7 +85,7 @@ export default function CustDetails() {
               fullRounded={false}
               icon={<i className="bx bx-phone bx-fw"></i>}
             />
-            <p className="text fw-600">+91 9021232326</p>
+            <p className="text fw-600">{custDetailsApiRes?.mobileNumber}</p>
           </div>
         </div>
         <div className="flex gp-10">
@@ -123,14 +126,14 @@ export default function CustDetails() {
             <div>Total Experience</div>
           </div>
           <div className="flex flex-col gp-10">
-            <div>World Bank Group</div>
-            <div>HTML, CSS, Javascript</div>
-            <div>Jul, 14, 2023</div>
-            <div>$6000</div>
-            <div>90 Days</div>
-            <div>9400 Ashton Rd, Philadelphia</div>
-            <div>Resume</div>
-            <div>5 Years</div>
+            <div>{custDetailsApiRes?.currentOrganization}</div>
+            <div>{custDetailsApiRes?.skills.flat().join(",")}</div>
+            <div>{custDetailsApiRes?.availableFrom}</div>
+            <div>{custDetailsApiRes?.currentSalary}</div>
+            <div>{custDetailsApiRes?.noticePeriod}</div>
+            <div>{custDetailsApiRes?.fullAddress}</div>
+            <div>{custDetailsApiRes?.resume}</div>
+            <div>{custDetailsApiRes?.totalExperience}</div>
           </div>
         </div>
         <div className="first-sec flex gp-10">
@@ -145,14 +148,14 @@ export default function CustDetails() {
             <div>Language Skills</div>
           </div>
           <div className="flex flex-col gp-10">
-            <div>World Bank Group</div>
-            <div>HTML, CSS, Javascript</div>
-            <div>Jul, 14, 2023</div>
-            <div>$6000</div>
-            <div>90 Days</div>
-            <div>9400 Ashton Rd, Philadelphia</div>
-            <div>Resume</div>
-            <div>5 Years</div>
+            <div>{custDetailsApiRes?.summary}</div>
+            <div>{custDetailsApiRes?.currentEmploymentStatus}</div>
+            <div>{custDetailsApiRes?.dateOfBirth}</div>
+            <div>{custDetailsApiRes?.relevantExperience}</div>
+            <div>{custDetailsApiRes?.salaryExpectation}</div>
+            <div>{custDetailsApiRes?.status}</div>
+            <div>{custDetailsApiRes?.salaryType}</div>
+            <div>{custDetailsApiRes?.languageSkills.flat().join(",")}</div>
           </div>
         </div>
       </div>
