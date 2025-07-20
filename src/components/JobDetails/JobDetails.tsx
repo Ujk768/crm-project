@@ -19,7 +19,9 @@ export default function JobDetails() {
         ].map((item) => (
           <div
             onClick={() => setSelectedTile(item)}
-            className={item === selectedTile ? "active flex align-center" : ""}
+            className={
+              item === selectedTile ? "active flex align-center tiles" : "tiles"
+            }
           >
             {item}
           </div>

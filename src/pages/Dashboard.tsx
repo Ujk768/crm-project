@@ -5,6 +5,8 @@ import BreadCrumb from "../components/BreadCrumb/BreadCrumb";
 import "./dashboard.scss";
 import CustDetails from "../components/CustDetails/CustDetails";
 import JobDetails from "../components/JobDetails/JobDetails";
+import Notes from "../components/Notes/Notes";
+import { isMobile } from "../util/utils";
 export default function Dashboard() {
   return (
     <div className="dashboard flex">
@@ -19,7 +21,9 @@ export default function Dashboard() {
             <CustDetails />
             <JobDetails />
           </div>
-          <div className="main__sec">second sec</div>
+          <div className={isMobile ? "main__sec" : "main__sec ml-20"}>
+            <Notes />
+          </div>
         </div>
       </div>
     </div>

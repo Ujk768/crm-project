@@ -7,7 +7,7 @@ export default function AssignedJobs() {
       <div className="flex mt-10 align-center gp-10">
         <img alt="icon" />
         <div className="flex flex-col">
-          <div>Senior Product Manager</div>
+          <div className="fw-600">Senior Product Manager</div>
           <div>Recruit CRM</div>
         </div>
       </div>

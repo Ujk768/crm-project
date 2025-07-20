@@ -1,0 +1,14 @@
+.card {
+  border: 2px solid gray;
+  border-radius: 2px;
+  padding: 5px;
+
+  &__icon {
+    border: 1px solid #2570ca;
+    border-radius: 50%;
+  }
+
+  .blue {
+    color: #2570ca;
+  }
+}
