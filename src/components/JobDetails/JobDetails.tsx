@@ -28,7 +28,7 @@ export default function JobDetails() {
         ))}
       </div>
       {selectedTile === "Assigned Jobs" ? (
-        <div className="mt-10">
+        <div className="mt-10 job-section">
           <div className="flex justify-space-btw align-center">
             <div>Assigned Job to William Sample </div>
             <div className="flex gp-5">
@@ -53,7 +53,7 @@ export default function JobDetails() {
           ))}
         </div>
       ) : (
-        ""
+        <div>No data available</div>
       )}
     </div>
   );

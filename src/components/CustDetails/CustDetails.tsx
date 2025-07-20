@@ -57,7 +57,7 @@ export default function CustDetails() {
       <div
         className={
           isMobile
-            ? "cust-details__strip flex flex-col mt-10"
+            ? "cust-details__strip flex flex-col mt-10 gp-10"
             : "cust-details__strip flex justify-space-btw  align-center"
         }
       >
@@ -72,7 +72,9 @@ export default function CustDetails() {
           </div>
           <div
             className={
-              isMobile ? "flex align-center ml-10" : "flex align-center"
+              isMobile
+                ? "flex align-center ml-10 gp-10"
+                : "flex align-center gp-10"
             }
           >
             <IconButtons
@@ -84,7 +86,7 @@ export default function CustDetails() {
           </div>
         </div>
         <div className="flex gp-10">
-          <div className="flex align-center">
+          <div className="flex align-center gp-5">
             <IconButtons
               btnType="icon"
               fullRounded={false}
@@ -94,7 +96,9 @@ export default function CustDetails() {
           </div>
           <div
             className={
-              isMobile ? "flex align-center ml-10" : "flex align-center"
+              isMobile
+                ? "flex align-center ml-10 gp-5"
+                : "flex align-center gp-5"
             }
           >
             <IconButtons

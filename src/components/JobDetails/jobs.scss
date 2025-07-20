@@ -26,7 +26,14 @@
     }
   }
 
+  .job-section {
+    min-height: 200px;
+    @include breakpoint("mobile-max") {
+      min-height: 110px;
+    }
+  }
+
   @include breakpoint("mobile-max") {
-    font-size: 10px;
+    font-size: 8px;
   }
 }
