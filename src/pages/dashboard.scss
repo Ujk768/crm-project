@@ -1,6 +1,8 @@
 @import "../scss/breakpoints";
 
 .dashboard {
+  height: 100%;
+  width: 100%;
   .sidebar {
     width: 5%;
     align-items: stretch;
@@ -9,10 +11,10 @@
     }
   }
   .main {
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 5px;
-    height: 100%;
     .container {
       display: flex;
       flex-grow: 1;

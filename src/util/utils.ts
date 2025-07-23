@@ -61,6 +61,10 @@ export const getCustDetails = (): Promise<CustDetailsResponse> => {
   });
 };
 
-export const insertCustDetails = () => {
-  console.log("sent updated cust info to db");
+export const insertCustDetails = (data: CustDetailsResponse["data"]) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("added into db....", data);
+    }, 1000);
+  });
 };
