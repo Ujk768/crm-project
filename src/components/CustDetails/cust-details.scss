@@ -39,4 +39,29 @@
       }
     }
   }
+  &__modal {
+    padding: 5px;
+    margin-left: 10%;
+    z-index: 10;
+    position: absolute;
+    width: 80%;
+    .content {
+      border: 2px solid #656e7a;
+      border-radius: 2px;
+      background-color: #ced4da;
+
+      .heading {
+        width: 40%;
+      }
+
+      .done-btn {
+        cursor: pointer;
+        background-color: #1f5fac;
+        color: white;
+        border: 2px solid #1f5fac;
+        border-radius: 2px;
+        padding: 5px;
+      }
+    }
+  }
 }

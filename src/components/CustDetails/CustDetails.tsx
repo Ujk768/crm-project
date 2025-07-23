@@ -1,10 +1,20 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import "./cust-details.scss";
 import IconButtons from "../IconButtons/IconButtons";
-import { isMobile } from "../../util/utils";
+import { isMobile, type CustDetailsResponse } from "../../util/utils";
 import { useCustDetails } from "./useCustDetails";
+import { createPortal } from "react-dom";
+
+const CustDetailsModal = lazy(() => import("./CustDetailsModal"));
 export default function CustDetails() {
-  const { handleEditBtn, custDetailsApiRes } = useCustDetails();
+  const {
+    handleEditBtn,
+    custDetailsApiRes,
+    showModal,
+    handleCloseModal,
+    setCustDetailsApiRes,
+  } = useCustDetails();
+
   return (
     <div className="cust-details fs-12">
       <div
@@ -113,6 +123,21 @@ export default function CustDetails() {
           </div>
         </div>
       </div>
+      <div className="cust-details__modal"></div>
+      <Suspense fallback={<div>Loading...</div>}>
+        {showModal &&
+          createPortal(
+            <CustDetailsModal
+              className="content"
+              custDetailsApiRes={
+                custDetailsApiRes as CustDetailsResponse["data"]
+              }
+              updateCustDetails={setCustDetailsApiRes}
+              handleClose={() => handleCloseModal()}
+            />,
+            document.querySelector(".cust-details__modal ") ?? document.body
+          )}
+      </Suspense>
       <div className="cust-details__info w-100 flex flex-row fs-12 gp-10">
         <div className="first-sec flex gp-10">
           <div className="flex flex-col fw-600 gp-10 title">
@@ -127,7 +152,7 @@ export default function CustDetails() {
           </div>
           <div className="flex flex-col gp-10">
             <div>{custDetailsApiRes?.currentOrganization}</div>
-            <div>{custDetailsApiRes?.skills.flat().join(",")}</div>
+            <div>{custDetailsApiRes?.skills?.flat().join(",")}</div>
             <div>{custDetailsApiRes?.availableFrom}</div>
             <div>{custDetailsApiRes?.currentSalary}</div>
             <div>{custDetailsApiRes?.noticePeriod}</div>
@@ -155,7 +180,7 @@ export default function CustDetails() {
             <div>{custDetailsApiRes?.salaryExpectation}</div>
             <div>{custDetailsApiRes?.status}</div>
             <div>{custDetailsApiRes?.salaryType}</div>
-            <div>{custDetailsApiRes?.languageSkills.flat().join(",")}</div>
+            <div>{custDetailsApiRes?.languageSkills?.flat().join(",")}</div>
           </div>
         </div>
       </div>

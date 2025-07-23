@@ -1,13 +1,18 @@
-import { use, useEffect, useState } from "react";
-import { getCustDetails, type CustDetailsResponse } from "../../util/utils";
+import { useEffect, useState } from "react";
+import {
+  getCustDetails,
+  insertCustDetails,
+  type CustDetailsResponse,
+} from "../../util/utils";
 
 export const useCustDetails = () => {
-  const [custDetailsApiRes, setCustDetailsApiRes] =
-    useState<CustDetailsResponse["data"]>();
+  const [custDetailsApiRes, setCustDetailsApiRes] = useState<
+    CustDetailsResponse["data"]
+  >({} as CustDetailsResponse["data"]);
+  const [showModal, setShowModal] = useState(false);
   const callGetCustDetails = async () => {
     try {
       const res = await getCustDetails();
-      console.log("api res", res);
       res.statusCode === 200 ? setCustDetailsApiRes(res.data) : "";
     } catch (err) {
       console.error("Error fetching cust details", err);
@@ -19,11 +24,18 @@ export const useCustDetails = () => {
   }, []);
 
   const handleEditBtn = () => {
-    console.log("Edit clicked");
+    setShowModal(true);
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   return {
     handleEditBtn,
     custDetailsApiRes,
+    setCustDetailsApiRes,
+    showModal,
+    setShowModal,
+    handleCloseModal,
   };
 };
