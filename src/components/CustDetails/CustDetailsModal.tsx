@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { custDetailsSchema } from "./custDetailsSchema";
+import { z } from "zod";
+
 import type { modalProps } from "./custDetailsType";
+import { insertCustDetails, isMobile } from "../../util/utils";
+
 import "./cust-details.scss";
-import {
-  insertCustDetails,
-  isMobile,
-  type CustDetailsResponse,
-} from "../../util/utils";
-import { useCustDetails } from "./useCustDetails";
+
+type FormData = z.infer<typeof custDetailsSchema>;
 
 export default function CustDetailsModal({
   handleClose,
@@ -14,27 +17,28 @@ export default function CustDetailsModal({
   custDetailsApiRes,
   updateCustDetails,
 }: modalProps) {
-  const [updatedDetails, setUpdatedDetails] = useState<
-    CustDetailsResponse["data"]
-  >({ ...custDetailsApiRes } as CustDetailsResponse["data"]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(custDetailsSchema),
+    defaultValues: {
+      ...custDetailsApiRes,
+      skills: custDetailsApiRes.skills?.toString(),
+      languageSkills: custDetailsApiRes.skills?.toString(),
+    },
+  });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    key: keyof CustDetailsResponse["data"]
-  ) => {
-    const value = e.target.value;
-    setUpdatedDetails((prev) => ({
-      ...prev,
-      [key]:
-        key === "skills" || key === "languageSkills"
-          ? value.split(",").map((s) => s.trim())
-          : value,
-    }));
-  };
-  const handleOnSubmit = () => {
+  const onSubmit = (data: FormData) => {
+    const updated = {
+      ...data,
+      skills: data.skills.split(","),
+      languageSkills: data.languageSkills.split(","),
+    };
+    updateCustDetails(updated);
+    insertCustDetails(updated);
     handleClose();
-    insertCustDetails({ ...updatedDetails });
-    updateCustDetails({ ...updatedDetails });
   };
 
   return (
@@ -48,42 +52,26 @@ export default function CustDetailsModal({
               ["Mobile Number", "mobileNumber"],
               ["Email", "email"],
               ["Current Organization", "currentOrganization"],
-              ["Skills", "skills", true],
+              ["Skills", "skills"],
               ["Available From", "availableFrom"],
               ["Current Salary", "currentSalary"],
               ["Notice Period", "noticePeriod"],
               ["Full Address", "fullAddress"],
               ["Resume", "resume"],
               ["Total Experience", "totalExperience"],
-            ].map(([label, field, isArray]) => (
-              <div
-                key={field as string}
-                className="flex align-center gp-10 mt-10"
-              >
+            ].map(([label, field]) => (
+              <div key={field} className="flex align-center gp-10 mt-10">
                 <div className="heading">{label} :</div>
                 <div>
                   <input
-                    placeholder={label as string}
-                    onChange={(e) =>
-                      handleChange(
-                        e,
-                        field as keyof CustDetailsResponse["data"]
-                      )
-                    }
-                    value={
-                      isArray
-                        ? (
-                            updatedDetails?.[
-                              field as keyof CustDetailsResponse["data"]
-                            ] as string[]
-                          )
-                            ?.flat()
-                            .join(",")
-                        : updatedDetails?.[
-                            field as keyof CustDetailsResponse["data"]
-                          ]
-                    }
+                    placeholder={label}
+                    {...register(field as keyof FormData)}
                   />
+                  {errors[field as keyof FormData] && (
+                    <div className="error-text">
+                      {errors[field as keyof FormData]?.message}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -97,44 +85,33 @@ export default function CustDetailsModal({
               ["Salary Expectation", "salaryExpectation"],
               ["Status", "status"],
               ["Salary Type", "salaryType"],
-              ["Language Skills", "languageSkills", true],
-            ].map(([label, field, isArray]) => (
-              <div
-                key={field as string}
-                className="flex align-center gp-10 mt-10"
-              >
+              ["Language Skills", "languageSkills"],
+            ].map(([label, field]) => (
+              <div key={field} className="flex align-center gp-10 mt-10">
                 <div className="heading">{label} :</div>
                 <div>
                   <input
-                    placeholder={label as string}
-                    onChange={(e) =>
-                      handleChange(
-                        e,
-                        field as keyof CustDetailsResponse["data"]
-                      )
-                    }
-                    value={
-                      isArray
-                        ? (
-                            updatedDetails?.[
-                              field as keyof CustDetailsResponse["data"]
-                            ] as string[]
-                          )
-                            ?.flat()
-                            .join(",")
-                        : updatedDetails?.[
-                            field as keyof CustDetailsResponse["data"]
-                          ]
-                    }
+                    placeholder={label}
+                    {...register(field as keyof FormData)}
                   />
+                  {errors[field as keyof FormData] && (
+                    <div className="error-text">
+                      {errors[field as keyof FormData]?.message}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
           </div>
         </form>
       </div>
-      <div onClick={handleOnSubmit} className="mt-10 fw-600 done-btn">
-        Done
+      <div className={`flex  gp-10 ${isMobile ? "flex-col" : ""}`}>
+        <div onClick={handleSubmit(onSubmit)} className="mt-10 fw-600 done-btn">
+          Done
+        </div>
+        <div onClick={handleClose} className="mt-10 fw-600 done-btn">
+          Close
+        </div>
       </div>
     </div>
   );

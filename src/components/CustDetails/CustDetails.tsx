@@ -138,48 +138,80 @@ export default function CustDetails() {
             document.querySelector(".cust-details__modal ") ?? document.body
           )}
       </Suspense>
-      <div className="cust-details__info w-100 flex flex-row fs-12 gp-10">
-        <div className="first-sec flex gp-10">
-          <div className="flex flex-col fw-600 gp-10 title">
-            <div>Current Organization</div>
-            <div>Skills</div>
-            <div>Available From</div>
-            <div>Current Salary</div>
-            <div>Notice Period</div>
-            <div>Full Address</div>
-            <div>Resume</div>
-            <div>Total Experience</div>
-          </div>
-          <div className="flex flex-col gp-10">
+      <div
+        className={
+          isMobile
+            ? "cust-details__info w-100 flex flex-row gp-10 fs-10"
+            : "cust-details__info w-100 flex flex-row gp-10 fs-12"
+        }
+      >
+        <div className="first-sec flex gp-10 flex-col">
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Current Organization</div>
             <div>{custDetailsApiRes?.currentOrganization}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Skills</div>
             <div>{custDetailsApiRes?.skills?.flat().join(",")}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Available From</div>
             <div>{custDetailsApiRes?.availableFrom}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Current Salary</div>
             <div>{custDetailsApiRes?.currentSalary}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Notice Period</div>
             <div>{custDetailsApiRes?.noticePeriod}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Full Address</div>
             <div>{custDetailsApiRes?.fullAddress}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Resume</div>
             <div>{custDetailsApiRes?.resume}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Total Experience</div>
             <div>{custDetailsApiRes?.totalExperience}</div>
           </div>
         </div>
-        <div className="first-sec flex gp-10">
-          <div className="flex flex-col fw-600 gp-10 title">
-            <div>Summary</div>
-            <div>Current Employment Status</div>
-            <div>Date of Birth</div>
-            <div>Relevent Experience</div>
-            <div>Salary Expectation</div>
-            <div>Status</div>
-            <div>Salary Type</div>
-            <div>Language Skills</div>
-          </div>
-          <div className="flex flex-col gp-10">
+        <div className="first-sec flex gp-10 flex-col">
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Summary</div>
             <div>{custDetailsApiRes?.summary}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">
+              Current Employment Status
+            </div>
             <div>{custDetailsApiRes?.currentEmploymentStatus}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Date of Birth</div>
             <div>{custDetailsApiRes?.dateOfBirth}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Relevent Experience</div>
             <div>{custDetailsApiRes?.relevantExperience}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Salary Expectation</div>
             <div>{custDetailsApiRes?.salaryExpectation}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Status</div>
             <div>{custDetailsApiRes?.status}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Salary Type</div>
             <div>{custDetailsApiRes?.salaryType}</div>
+          </div>
+          <div className="flex gp-10 align-center">
+            <div className="fw-600 first-sec__title">Language Skills</div>
             <div>{custDetailsApiRes?.languageSkills?.flat().join(",")}</div>
           </div>
         </div>

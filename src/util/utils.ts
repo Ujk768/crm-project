@@ -64,7 +64,17 @@ export const getCustDetails = (): Promise<CustDetailsResponse> => {
 export const insertCustDetails = (data: CustDetailsResponse["data"]) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      console.log("added into db....", data);
+      resolve(
+        (function () {
+          console.log("added to db", data);
+          return {
+            data: {
+              id: "1",
+              statusCode: 204,
+            },
+          };
+        })()
+      );
     }, 1000);
   });
 };
