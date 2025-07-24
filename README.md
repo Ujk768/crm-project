@@ -1,69 +1,150 @@
-# React + TypeScript + Vite
+# Recruitment Dashboard - Candidate Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive and user-friendly dashboard built for a recruitment company to **view, edit, and manage candidate details** efficiently across all device types. Built with **React**, **SCSS**, **React Hook Form**, and **Zod**, this dashboard is designed with performance, accessibility, and user experience in mind.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🔍 **View Candidate Details**: Browse and search through candidate information.
+- 📝 **Edit via Modal Form**: Update candidate data using a form presented in a modal (React Portal).
+- 📱 **Responsive UI**: Optimized layout for both desktop and mobile.
+- ✅ **Form Validation**: Integrated form validation using `React Hook Form` and `Zod`.
+- 🚀 **Smooth UX**: API loaders and minimum height strategies reduce layout shifts and improve perceived performance.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📐 Responsive Design
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Responsiveness is handled using **SCSS mixins** and custom breakpoint definitions:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```scss
+$breakpoints: (
+  "mobile-min": (min-width: 320px),
+  "mobile-max": (max-width: 767px),
+  "desktop-max": (max-width: 1199px),
+  "desktop-min": (min-width: 1025px)
+);
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+@mixin breakpoint($name) {
+  @if map-has-key($breakpoints, $name) {
+    @media screen and #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
+}
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This allows clean and consistent breakpoint-based styles:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+scss
+Copy
+Edit
+@include breakpoint("mobile-max") {
+  .sidebar {
+    display: none;
+  }
+}
+
+🧩 Modal Form Design
+Built with React Portal for rendering modals outside the DOM hierarchy.
+
+Modal supports keyboard accessibility, ESC close, and click outside to close.
+
+Form within the modal is:
+
+Responsive and mobile-friendly.
+
+Auto-focused for better usability.
+
+Connected to validation logic using React Hook Form + Zod.
+
+
+
+✅ Validations
+Implemented using:
+
+React Hook Form for form state management.
+
+Zod for schema-based runtime validation.
+
+import { z } from "zod";
+
+export const custDetailsSchema = z.object({
+  mobileNumber: z
+    .string()
+    .regex(/^\+?[0-9\s\-()]{10,}$/, "Valid phone number required"),
+  email: z.string().email("Enter a valid email"),
+  currentOrganization: z.string().min(1, "Required"),
+  skills: z.string().min(1, "Required"),
+  availableFrom: z.string().min(1, "Required"),
+  currentSalary: z.string().min(1, "Required"),
+  noticePeriod: z.string().min(1, "Required"),
+  fullAddress: z.string().min(1, "Required"),
+  resume: z.string().min(1, "Required"),
+  totalExperience: z.string().min(1, "Required"),
+  summary: z.string().min(1, "Required"),
+  currentEmploymentStatus: z.string().min(1, "Required"),
+  dateOfBirth: z.string().min(1, "Required"),
+  relevantExperience: z.string().min(1, "Required"),
+  salaryExpectation: z.string().min(1, "Required"),
+  status: z.string().min(1, "Required"),
+  salaryType: z.string().min(1, "Required"),
+  languageSkills: z.string().min(1, "Required"),
+});
+
+⏳ Performance & UX Optimizations
+Loading Spinners: Shown while waiting for API responses to prevent flickering and improve user trust.
+
+Min Height Placeholders: Used to reserve space and avoid layout shift during async operations.
+
+Lazy Loading: Large components and modals are lazy-loaded to improve initial load time.
+
+
+🧰 Tech Stack
+React (with hooks)
+
+SCSS for styling and responsive design
+
+React Hook Form for form management
+
+Zod for validation
+
+TypeScript for type safety
+
+React Portal for modals
+
+
+Sceenshots
+
+Desktop
+
+<img width="959" height="439" alt="image" src="https://github.com/user-attachments/assets/57c70eeb-15df-4634-a1d0-4109a3c7ae39" />
+
+<img width="960" height="440" alt="image" src="https://github.com/user-attachments/assets/2e15610d-79a5-4e51-b66d-045e0dbd9819" />
+
+
+Desktop with Edit Details
+
+<img width="960" height="442" alt="image" src="https://github.com/user-attachments/assets/76a11dd9-9a05-4c80-8f3c-8aa0c51d24ba" />
+
+
+Mobile
+
+<img width="172" height="373" alt="image" src="https://github.com/user-attachments/assets/bdd7244f-e146-4417-9d71-28184ce25daf" />
+
+<img width="166" height="371" alt="image" src="https://github.com/user-attachments/assets/693e9f2d-af79-4d80-9fd5-ac0fa09ef7bc" />
+
+
+
+
+Mobile with Edit Details
+
+<img width="168" height="358" alt="image" src="https://github.com/user-attachments/assets/3ee7cd5c-1150-4e8a-bb99-f67ff07c1362" />
+
+
+
+Code Sandbox Preview URL: https://zd45cw-5173.csb.app/
+
+
+👨‍💻 Author
+Made with ❤️ by Utkarsh Kanade
