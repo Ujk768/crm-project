@@ -60,9 +60,9 @@ export default function CustDetailsModal({
               ["Resume", "resume"],
               ["Total Experience", "totalExperience"],
             ].map(([label, field]) => (
-              <div key={field} className="flex align-center gp-10 mt-10">
+              <div key={field} className="flex align-center gp-10 mt-10 p-2">
                 <div className="heading">{label} :</div>
-                <div>
+                <div className="inp-box">
                   <input
                     placeholder={label}
                     {...register(field as keyof FormData)}
@@ -77,7 +77,7 @@ export default function CustDetailsModal({
             ))}
           </div>
 
-          <div className={isMobile ? "second-sec" : "second-sec ml-10"}>
+          <div className={isMobile ? "second-sec p-2" : "second-sec ml-10 p-2"}>
             {[
               ["Summary", "summary"],
               ["Current Employment Status", "currentEmploymentStatus"],
@@ -89,7 +89,7 @@ export default function CustDetailsModal({
             ].map(([label, field]) => (
               <div key={field} className="flex align-center gp-10 mt-10">
                 <div className="heading">{label} :</div>
-                <div>
+                <div className="inp-box">
                   <input
                     placeholder={label}
                     {...register(field as keyof FormData)}

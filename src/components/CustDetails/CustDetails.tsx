@@ -24,9 +24,12 @@ export default function CustDetails() {
       >
         <div className="flex align-center">
           <div className="cust-details__profile">
-            <img src="" alt="profile-logo" />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/9385/9385289.png"
+              alt="profile-logo"
+            />
           </div>
-          <div>
+          <div className="ml-10">
             <p className="fw-600">William Sample</p>
             <div className="flex gp-5">
               <p>Senior Product Manager</p>

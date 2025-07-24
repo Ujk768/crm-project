@@ -4,6 +4,10 @@
   &__profile {
     width: 64px;
     height: 64px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   &__btn:nth-child(1) {
     .icon-btn__text {
@@ -45,7 +49,7 @@
   }
   &__modal {
     padding: 5px;
-    margin-left: 10%;
+    margin-left: 5%;
     z-index: 10;
     position: absolute;
     width: 80%;
@@ -56,6 +60,11 @@
 
       .heading {
         width: 40%;
+      }
+      .inp-box {
+        input {
+          width: 95%;
+        }
       }
 
       .done-btn {

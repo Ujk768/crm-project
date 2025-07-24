@@ -7,7 +7,7 @@ export default function BreadCrumb() {
     <div
       className={`${
         isMobile
-          ? "breadcrumb justify-space-btw w-100 fs-10"
+          ? "breadcrumb justify-space-btw w-100 fs-10 gp-10"
           : "flex breadcrumb justify-space-btw w-100 fs-12"
       }`}
     >
@@ -17,7 +17,11 @@ export default function BreadCrumb() {
         <p className="fw-600">Robert Hardy</p>
         <div className="breadcrumb__id flex align-center">ID - 231</div>
       </div>
-      <div className="flex align-center gp-5">
+      <div
+        className={
+          isMobile ? "flex align-center mt-10 gp-10" : "flex align-center gp-10"
+        }
+      >
         <IconButtons
           btnType="text"
           fullRounded={false}
